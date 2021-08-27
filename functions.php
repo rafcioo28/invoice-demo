@@ -5,6 +5,13 @@
  * @package WordPress
  */
 
+// Includes.
+require get_theme_file_path( '/includes/cpt/invoice-cpt.php' );
+require get_theme_file_path( '/includes/cpt/restaurant-cpt.php' );
+
+/**
+ * Styles and scripts.
+ */
 function enqueue_files() {
 	wp_enqueue_script( 'main-js', get_theme_file_uri( '/build/index.js' ), array(), '1.0', true );
 	wp_enqueue_style( 'custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i', array(), '1.0' );
@@ -14,3 +21,10 @@ function enqueue_files() {
 }
 
 add_action( 'wp_enqueue_scripts', 'enqueue_files' );
+
+
+// Hooks.
+add_action( 'init', 'restaurant_post_type' ); // Init custom post type - restaurant.
+add_action( 'init', 'invoice_post_type' ); // Init custom post type - invoice.
+
+// Filters.
