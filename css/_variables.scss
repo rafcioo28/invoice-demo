@@ -1,0 +1,27 @@
+// If you want use rem to px function define this in pixels exclude 'px'
+$base-font-size: 16;
+
+// Grid
+$grid-gutter-width: 30px;
+
+// Grid breakpoints
+$xs: 375px;
+$sm: 600px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1440px;
+
+// Fonts
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+//vars 
+:root {
+  --color-link: #66f;
+
+}

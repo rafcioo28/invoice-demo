@@ -1,0 +1,34 @@
+@import 'variables';
+@import 'mixins';
+
+.container {
+  clear: both;
+  margin: 0 auto;
+  padding-right: $grid-gutter-width / 2;
+  padding-left: $grid-gutter-width /2;
+  width: 100%;
+
+  @include media-breakpoint-up(sm) {
+    max-width: $sm;
+  }
+
+  @include media-breakpoint-up(md) {
+    max-width: $md;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: $lg;
+  }
+
+  @include media-breakpoint-up(xl) {
+    max-width: $xl;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    max-width: $xxl;
+  }
+}
+
+.hide {
+  display: none;
+}
