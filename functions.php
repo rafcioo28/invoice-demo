@@ -8,6 +8,7 @@
 // Includes.
 require get_theme_file_path( '/includes/cpt/invoice-cpt.php' );
 require get_theme_file_path( '/includes/cpt/restaurant-cpt.php' );
+require get_theme_file_path( '/includes/acf-local.php' );
 
 /**
  * Styles and scripts.
@@ -24,7 +25,9 @@ add_action( 'wp_enqueue_scripts', 'enqueue_files' );
 
 
 // Hooks.
-add_action( 'init', 'restaurant_post_type' ); // Init custom post type - restaurant.
-add_action( 'init', 'invoice_post_type' ); // Init custom post type - invoice.
+add_action( 'init', 'ci_restaurant_post_type' ); // Init custom post type - restaurant.
+add_action( 'init', 'ci_invoice_post_type' ); // Init custom post type - invoice.
 
 // Filters.
+add_filter( 'acf/settings/save_json', 'ci_acf_json_save' ); // ACF local save.
+add_filter( 'acf/settings/load_json', 'ci_acf_json_load' ); // ACF local load.

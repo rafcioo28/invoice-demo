@@ -1,8 +1,14 @@
 <?php
 /**
- * Register restaurant Post Type
+ * Register invoice Post Type file.
+ *
+ * @package WordPress.
  */
-function invoice_post_type() {
+
+/**
+ * Register invoice Post Type function.
+ */
+function ci_invoice_post_type() {
 
 	$labels = array(
 		'name'                  => _x( 'Invoices', 'Post Type General Name', 'CreateIt-demo' ),

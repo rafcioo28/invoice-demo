@@ -1,8 +1,14 @@
 <?php
 /**
- * Register restaurant Post Type
+ * Register restaurant Post Type file.
+ *
+ * @package WordPress.
  */
-function restaurant_post_type() {
+
+/**
+ * Register restaurant Post Type function.
+ */
+function ci_restaurant_post_type() {
 
 	$labels = array(
 		'name'                  => _x( 'Restaurants', 'Post Type General Name', 'CreateIt-demo' ),
