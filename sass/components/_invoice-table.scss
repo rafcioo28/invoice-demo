@@ -1,0 +1,32 @@
+.invoice-table {
+  padding-top: rem(280);
+  margin: 0 auto;
+
+  @include media-breakpoint-up(xl) {
+    width: rem(1700);
+  }
+
+  &__row,
+  &__table-header {
+    display: grid;
+    grid-template-columns: rem(90) rem(135) rem(388) rem(160) rem(172) rem(167) rem(149) rem(145) rem(148) 1fr;
+    align-items: center;
+  }
+
+  &__table-header {
+    height: rem(60);
+    border: 1px solid grey;
+
+    div {
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: $font-weight-medium;
+      color: var(--color-table-header);
+    }
+  }
+
+  &__row {
+    height: rem(76);
+    font-size: rem(22);
+  }
+}

@@ -44,7 +44,7 @@ function ci_invoice_post_type() {
 		'label'               => __( 'Invoice', 'CreateIt-demo' ),
 		'description'         => __( 'Post Type Description', 'CreateIt-demo' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'thumbnail' ),
+		'supports'            => array( 'title' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'menu_icon'           => 'dashicons-text-page',

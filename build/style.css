@@ -1,0 +1,111 @@
+/* SASS and Global'ish Stuff */
+:root {
+  --color-table-header: hsl(0, 0%, 60%);
+  --color-link: hsl(237, 100%, 50%);
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-link);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1.65em 0;
+}
+
+p,
+li {
+  line-height: 1.65;
+}
+
+.container {
+  clear: both;
+  margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 100%;
+}
+@media (min-width: 600px) {
+  .container {
+    max-width: 600px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+/* Components */
+.invoice-table {
+  padding-top: 17.5rem;
+  margin: 0 auto;
+}
+@media (min-width: 1200px) {
+  .invoice-table {
+    width: 106.25rem;
+  }
+}
+.invoice-table__row, .invoice-table__table-header {
+  display: grid;
+  grid-template-columns: 5.625rem 8.4375rem 24.25rem 10rem 10.75rem 10.4375rem 9.3125rem 9.0625rem 9.25rem 1fr;
+  align-items: center;
+}
+.invoice-table__table-header {
+  height: 3.75rem;
+  border: 1px solid grey;
+}
+.invoice-table__table-header div {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-table-header);
+}
+.invoice-table__row {
+  height: 4.75rem;
+  font-size: 1.375rem;
+}
+
+/* BEM Blocks */

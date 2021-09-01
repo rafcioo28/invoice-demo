@@ -1,5 +1,3 @@
-import "../css/style.scss"
-
 // modules / classes
 import MobileMenu from "./modules/MobileMenu"
 
