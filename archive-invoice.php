@@ -42,13 +42,15 @@ get_header();
 					<div class="invoice-table__restaurant">
 						<?php
 						if ( ! empty( $invoice_restaurant ) ) :
+							echo get_the_post_thumbnail( $invoice_restaurant, 'restaurant_thumbnail' );
 							?>
+							<span><?php echo esc_attr( $invoice_restaurant->post_title ); ?></span>
 							<?php
 						endif;
 						?>
 					</div>
 					<div class="invoice-table__status <?php echo ( ! empty( $invoice_status ) ) ? esc_attr( 'invoice-table__status--' . $invoice_status ) : ''; ?>">
-						<?php echo ( ! empty( $invoice_status ) ) ? esc_html( $invoice_status ) : ''; ?>
+						<div><?php echo ( ! empty( $invoice_status ) ) ? esc_html( $invoice_status ) : ''; ?></div>
 					</div>
 					<div class="invoice-table__start-date">
 						<?php echo ( ! empty( $invoice_start_date ) ) ? esc_html( $invoice_start_date ) : ''; ?>
@@ -66,7 +68,7 @@ get_header();
 						HK$<?php echo ( ! empty( $invoice_transfer ) ) ? esc_html( $invoice_transfer ) : ''; ?>
 					</div>
 					<div class="invoice-table__orders">
-						HK$<?php echo ( ! empty( $invoice_orders ) ) ? esc_html( $invoice_orders ) : ''; ?>
+						<?php echo ( ! empty( $invoice_orders ) ) ? esc_html( $invoice_orders ) : ''; ?>
 					</div>
 				</div>
 				<?php

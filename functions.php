@@ -10,9 +10,23 @@ require get_theme_file_path( '/includes/cpt/invoice-cpt.php' );
 require get_theme_file_path( '/includes/cpt/restaurant-cpt.php' );
 require get_theme_file_path( '/includes/acf-local.php' );
 
-
-// Supports. 
+// Supports.
 add_theme_support( 'post-thumbnails' );
+add_theme_support(
+	'html5',
+	array(
+		'script',
+		'style',
+		'search-form',
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	)
+);
+
+// Image sizes.
+add_image_size( 'restaurant_thumbnail', 40, 40, array( 'center', 'center' ) );
 
 /**
  * Styles and scripts.

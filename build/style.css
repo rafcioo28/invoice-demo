@@ -1,6 +1,13 @@
 /* SASS and Global'ish Stuff */
 :root {
+  --bg-color: hsl(220, 23%, 98%);
+  --border-color: hsl(240, 4%, 91%);
+  --shadow-color: hsla(0, 0%, 50%, 0.1);
   --color-table-header: hsl(0, 0%, 60%);
+  --table-text-color: hsl(0, 0%, 30%);
+  --color-outgoing:	hsl(228, 11%, 91%);
+  --color-verified:	hsl(157, 46%, 53%);
+  --color-pending:	hsl(35, 100%, 60%);
   --color-link: hsl(237, 100%, 50%);
 }
 
@@ -20,6 +27,7 @@ body {
   font-family: "Open Sans", sans-serif;
   overflow-x: hidden;
   position: relative;
+  background-color: var(--bg-color);
 }
 
 img {
@@ -81,10 +89,13 @@ li {
 /* Components */
 .invoice-table {
   padding-top: 17.5rem;
+}
+.invoice-table__container {
   margin: 0 auto;
+  background-color: #fff;
 }
 @media (min-width: 1200px) {
-  .invoice-table {
+  .invoice-table__container {
     width: 106.25rem;
   }
 }
@@ -95,7 +106,8 @@ li {
 }
 .invoice-table__table-header {
   height: 3.75rem;
-  border: 1px solid grey;
+  border-radius: 0.5rem 0.5rem 0 0;
+  border: 1px solid var(--border-color);
 }
 .invoice-table__table-header div {
   text-transform: uppercase;
@@ -104,8 +116,51 @@ li {
   color: var(--color-table-header);
 }
 .invoice-table__row {
+  position: relative;
   height: 4.75rem;
   font-size: 1.375rem;
+  border: 1px solid var(--border-color);
+  color: var(--table-text-color);
+  background-color: #fff;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.2s ease;
+}
+.invoice-table__row:hover {
+  transform: scale(1.03);
+  z-index: 2;
+  box-shadow: 0 1.5625rem 3.75rem var(--shadow-color);
+}
+.invoice-table__restaurant {
+  display: flex;
+  align-items: center;
+  color: #000;
+}
+.invoice-table__restaurant img {
+  border-radius: 0.5rem;
+  margin-right: 0.875rem;
+}
+.invoice-table__status div {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  height: 1.75rem;
+  padding: 0 0.9375rem;
+  border-radius: 1.25rem;
+}
+.invoice-table__status--outgoing div {
+  background-color: var(--color-outgoing);
+}
+.invoice-table__status--verified div {
+  background-color: var(--color-verified);
+  color: #fff;
+}
+.invoice-table__status--pending div {
+  background-color: var(--color-pending);
+  color: #fff;
 }
 
 /* BEM Blocks */

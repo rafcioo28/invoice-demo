@@ -22,7 +22,14 @@ $font-weight-extrabold: 800;
 
 //vars 
 :root {
+  --bg-color: hsl(220, 23%, 98%);
+  --border-color: hsl(240, 4%, 91%);
+  --shadow-color: hsla(0, 0%, 50%, 0.1);
   --color-table-header: hsl(0, 0%, 60%);
-  --color-link: hsl(237, 100%, 50%);
+  --table-text-color: hsl(0, 0%, 30%);
+  --color-outgoing: 	hsl(228, 11%, 91%);
+  --color-verified: 	hsl(157, 46%, 53%);
+  --color-pending: 		hsl(35, 100%, 60%);
 
+  --color-link: hsl(237, 100%, 50%);
 }
