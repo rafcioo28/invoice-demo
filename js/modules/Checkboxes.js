@@ -6,7 +6,7 @@ class Checkboxes {
     }
 
     events() {
-        $(".js--row").on("click", this.rowClick);
+        $(".invoice-table__container").on("click", ".js--row", this.rowClick);
         $(".js--select-all").on("click", this.selectAll);
     }
 

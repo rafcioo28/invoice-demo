@@ -58,61 +58,6 @@ get_header();
 				<div><?php esc_html_e( 'Transfer', 'createit-demo' ); ?></div>
 				<div><?php esc_html_e( 'Orders', 'createit-demo' ); ?></div>
 			</div>
-			<?php
-			while ( have_posts() ) :
-				the_post();
-				$invoice_restaurant = get_field( 'invoice_restaurant' );
-				$invoice_status     = get_field( 'invoice_status' );
-				$invoice_start_date = get_field( 'invoice_start_date' );
-				$invoice_end_date   = get_field( 'invoice_end_date' );
-				$invoice_total      = get_field( 'invoice_total' );
-				$invoice_fees       = get_field( 'invoice_fees' );
-				$invoice_transfer   = get_field( 'invoice_transfer' );
-				$invoice_orders     = get_field( 'invoice_orders' );
-				?>
-				<div class="invoice-table__row js--row">
-					<div class="invoice-table__check">
-						<label>
-							<input type="checkbox" id="<?php the_ID(); ?>">
-							<span></span>
-						</label>
-					</div>
-					<div class="invoice-table__id">#<?php the_ID(); ?></div>
-					<div class="invoice-table__restaurant">
-						<?php
-						if ( ! empty( $invoice_restaurant ) ) :
-							echo get_the_post_thumbnail( $invoice_restaurant, 'restaurant_thumbnail' );
-							?>
-							<span><?php echo esc_attr( $invoice_restaurant->post_title ); ?></span>
-							<?php
-						endif;
-						?>
-					</div>
-					<div class="invoice-table__status <?php echo ( ! empty( $invoice_status ) ) ? esc_attr( 'invoice-table__status--' . $invoice_status ) : ''; ?>">
-						<div><?php echo ( ! empty( $invoice_status ) ) ? esc_html( $invoice_status ) : ''; ?></div>
-					</div>
-					<div class="invoice-table__start-date">
-						<?php echo ( ! empty( $invoice_start_date ) ) ? esc_html( $invoice_start_date ) : ''; ?>
-					</div>
-					<div class="invoice-table__end-date">
-						<?php echo ( ! empty( $invoice_end_date ) ) ? esc_html( $invoice_end_date ) : ''; ?>
-					</div>
-					<div class="invoice-table__total">
-						HK$<?php echo ( ! empty( $invoice_total ) ) ? esc_html( $invoice_total ) : ''; ?>
-					</div>
-					<div class="invoice-table__fees">
-						HK$<?php echo ( ! empty( $invoice_fees ) ) ? esc_html( $invoice_fees ) : ''; ?>
-					</div>
-					<div class="invoice-table__transfer">
-						HK$<?php echo ( ! empty( $invoice_transfer ) ) ? esc_html( $invoice_transfer ) : ''; ?>
-					</div>
-					<div class="invoice-table__orders">
-						<?php echo ( ! empty( $invoice_orders ) ) ? esc_html( $invoice_orders ) : ''; ?>
-					</div>
-				</div>
-				<?php
-			endwhile;
-			?>
 		</div>
 	</section>
 </main>

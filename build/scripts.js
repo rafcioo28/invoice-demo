@@ -1,6 +1,78 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./js/modules/AjaxPagination.js":
+/*!**************************************!*\
+  !*** ./js/modules/AjaxPagination.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var AjaxPagination = /*#__PURE__*/function () {
+  function AjaxPagination() {
+    _classCallCheck(this, AjaxPagination);
+
+    this.load_all_posts(1);
+    this.events();
+  }
+
+  _createClass(AjaxPagination, [{
+    key: "events",
+    value: function events() {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.invoice-table__container').on('click', 'li.active', this.load_all_posts);
+    }
+  }, {
+    key: "load_all_posts",
+    value: function load_all_posts(page) {
+      if (page != 1) {
+        page = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('p');
+      }
+
+      console.log(page); // Start the transition
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".cvf_pag_loading").fadeIn().css('background', '#ccc'); // Data to receive from our server
+      // the value in 'action' is the key that will be identified by the 'wp_ajax_' hook
+
+      var data = {
+        page: page,
+        action: "ci_invoices_pagination"
+      }; // Send the data
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default().post(ciInvoiceData.ajaxUrl, data, function (response) {
+        // If successful Append the data into our html container
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js--row').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.ci-pagination').remove();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".invoice-table__container").append(response); // End the transition
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".invoice-table__container").css({
+          'background': 'none',
+          'transition': 'all 1s ease-out'
+        });
+      });
+    }
+  }]);
+
+  return AjaxPagination;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AjaxPagination);
+
+/***/ }),
+
 /***/ "./js/modules/Checkboxes.js":
 /*!**********************************!*\
   !*** ./js/modules/Checkboxes.js ***!
@@ -32,7 +104,7 @@ var Checkboxes = /*#__PURE__*/function () {
   _createClass(Checkboxes, [{
     key: "events",
     value: function events() {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".js--row").on("click", this.rowClick);
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".invoice-table__container").on("click", ".js--row", this.rowClick);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(".js--select-all").on("click", this.selectAll);
     } //methods
 
@@ -225,13 +297,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_Checkboxes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Checkboxes */ "./js/modules/Checkboxes.js");
 /* harmony import */ var _modules_DateFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/DateFilter */ "./js/modules/DateFilter.js");
 /* harmony import */ var _modules_Filters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/Filters */ "./js/modules/Filters.js");
+/* harmony import */ var _modules_AjaxPagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/AjaxPagination */ "./js/modules/AjaxPagination.js");
 // modules / classes
+
 
 
 
  // Instantiate a new object using our modules/classes
 
 var mobileMenu = new _modules_MobileMenu__WEBPACK_IMPORTED_MODULE_0__.default();
+var ajaxPagination = new _modules_AjaxPagination__WEBPACK_IMPORTED_MODULE_4__.default();
 var checkboxes = new _modules_Checkboxes__WEBPACK_IMPORTED_MODULE_1__.default();
 var dateFilter = new _modules_DateFilter__WEBPACK_IMPORTED_MODULE_2__.default();
 var filters = new _modules_Filters__WEBPACK_IMPORTED_MODULE_3__.default();
