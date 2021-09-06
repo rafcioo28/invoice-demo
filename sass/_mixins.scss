@@ -39,4 +39,16 @@
       @content;
     }
   }
+
+  @else if $media==xxl {
+    @media (min-width: $xxl) {
+      @content;
+    }
+  }
+
+  @else if $media==xxxl {
+    @media (min-width: $xxxl) {
+      @content;
+    }
+  }
 }

@@ -1,6 +1,9 @@
+@charset "UTF-8";
 /* SASS and Global'ish Stuff */
 :root {
   --bg-color: hsl(220, 23%, 98%);
+  --bg-label:	hsl(220, 13%, 95%);
+  --status-filter: hsl(217, 9%, 46%);
   --border-color: hsl(240, 4%, 91%);
   --shadow-color: hsla(0, 0%, 50%, 0.1);
   --color-table-header: hsl(0, 0%, 60%);
@@ -8,6 +11,8 @@
   --color-outgoing:	hsl(228, 11%, 91%);
   --color-verified:	hsl(157, 46%, 53%);
   --color-pending:	hsl(35, 100%, 60%);
+  --color-button: hsl(35, 100%, 60%);
+  --color-button-hover: hsl(35, 100%, 40%);
   --color-link: hsl(237, 100%, 50%);
 }
 
@@ -81,28 +86,138 @@ li {
     max-width: 1200px;
   }
 }
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+}
 
 .hide {
   display: none;
 }
 
 /* Components */
-.invoice-table {
-  padding-top: 17.5rem;
+.filters {
+  margin-top: 17.5rem;
 }
+.filters__container {
+  margin: 0 auto 1.625rem;
+  display: flex;
+}
+@media (min-width: 992px) {
+  .filters__container {
+    width: 75rem;
+  }
+}
+@media (min-width: 1920px) {
+  .filters__container {
+    width: 106.25rem;
+  }
+}
+.filters__status {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.filters__status-filter {
+  color: var(--status-filter);
+  text-transform: uppercase;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.filters__status-filter--active {
+  background-color: var(--status-filter);
+  color: #fff;
+}
+.filters__dates {
+  display: flex;
+  margin-left: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.filters__dates input {
+  width: 21.5625rem;
+  height: 3.5rem;
+  font-size: 1.75rem;
+  padding-left: 0.9375rem;
+  border: none;
+}
+.filters__dates-label {
+  width: 8.75rem;
+  height: 100%;
+  background-color: var(--bg-label);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+}
+.filters__dates-label::before {
+  display: block;
+  content: "";
+  background: url(../images/calendar-icon.jpg) left center no-repeat;
+  width: 2.5rem;
+  height: 100%;
+}
+.filters__search {
+  position: relative;
+  margin-left: 1.75rem;
+}
+.filters__search svg {
+  position: absolute;
+  width: 1.875rem;
+  height: 1.875rem;
+  top: 0.8125rem;
+  left: 1rem;
+  color: var(--color-table-header);
+}
+.filters__search input {
+  width: 19.375rem;
+  height: 3.625rem;
+  font-size: 1.75rem;
+  padding-left: 3.625rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+}
+.filters__paid-btn {
+  margin-left: 1.375rem;
+  background-color: var(--color-button);
+  color: #fff;
+  font-size: 1.375rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0 1.875rem;
+  transition: background-color 0.2s ease;
+}
+.filters__paid-btn:hover {
+  background-color: var(--color-button-hover);
+}
+
 .invoice-table__container {
   margin: 0 auto;
   background-color: #fff;
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
+  .invoice-table__container {
+    width: 75rem;
+  }
+}
+@media (min-width: 1920px) {
   .invoice-table__container {
     width: 106.25rem;
   }
 }
 .invoice-table__row, .invoice-table__table-header {
   display: grid;
-  grid-template-columns: 5.625rem 8.4375rem 24.25rem 10rem 10.75rem 10.4375rem 9.3125rem 9.0625rem 9.25rem 1fr;
+  grid-template-columns: 2.5rem 5.625rem 16.875rem 7.1875rem 7.1875rem 7.1875rem 7.1875rem 7.1875rem 7.1875rem 1fr;
   align-items: center;
+}
+@media (min-width: 1920px) {
+  .invoice-table__row, .invoice-table__table-header {
+    grid-template-columns: 5.625rem 8.4375rem 24.25rem 10rem 10.75rem 10.4375rem 9.3125rem 9.0625rem 9.25rem 1fr;
+  }
 }
 .invoice-table__table-header {
   height: 3.75rem;
@@ -111,14 +226,19 @@ li {
 }
 .invoice-table__table-header div {
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--color-table-header);
+}
+@media (min-width: 1920px) {
+  .invoice-table__table-header div {
+    font-size: 1.125rem;
+  }
 }
 .invoice-table__row {
   position: relative;
   height: 4.75rem;
-  font-size: 1.375rem;
+  font-size: 1rem;
   border: 1px solid var(--border-color);
   color: var(--table-text-color);
   background-color: #fff;
@@ -126,8 +246,13 @@ li {
   transform: scale(1);
   transition: all 0.2s ease;
 }
+@media (min-width: 1920px) {
+  .invoice-table__row {
+    font-size: 1.375rem;
+  }
+}
 .invoice-table__row:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
   z-index: 2;
   box-shadow: 0 1.5625rem 3.75rem var(--shadow-color);
 }
@@ -144,12 +269,17 @@ li {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.125rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   font-weight: 600;
   height: 1.75rem;
   padding: 0 0.9375rem;
   border-radius: 1.25rem;
+}
+@media (min-width: 1920px) {
+  .invoice-table__status div {
+    font-size: 1.125rem;
+  }
 }
 .invoice-table__status--outgoing div {
   background-color: var(--color-outgoing);
@@ -161,6 +291,35 @@ li {
 .invoice-table__status--pending div {
   background-color: var(--color-pending);
   color: #fff;
+}
+
+.invoice-table label {
+  cursor: pointer;
+}
+.invoice-table label:not(.js--select-all) {
+  pointer-events: none;
+}
+.invoice-table input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+}
+.invoice-table input[type=checkbox] + span::before {
+  display: block;
+  content: "";
+  width: 1.375rem;
+  height: 1.375rem;
+  border: solid 0.0625rem grey;
+  text-align: center;
+  border-radius: 0.1875rem;
+  font-size: 1.375rem;
+  line-height: 1rem;
+  position: relative;
+  margin: 0 auto;
+}
+.invoice-table input[type=checkbox]:checked + span::before {
+  border-color: grey;
+  color: blue;
+  content: "✓";
 }
 
 /* BEM Blocks */

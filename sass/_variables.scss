@@ -11,6 +11,7 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 $xxl: 1440px;
+$xxxl: 1920px;
 
 // Fonts
 $font-weight-light: 300;
@@ -23,6 +24,8 @@ $font-weight-extrabold: 800;
 //vars 
 :root {
   --bg-color: hsl(220, 23%, 98%);
+  --bg-label: 	hsl(220, 13%, 95%);
+  --status-filter: hsl(217, 9%, 46%);
   --border-color: hsl(240, 4%, 91%);
   --shadow-color: hsla(0, 0%, 50%, 0.1);
   --color-table-header: hsl(0, 0%, 60%);
@@ -30,6 +33,8 @@ $font-weight-extrabold: 800;
   --color-outgoing: 	hsl(228, 11%, 91%);
   --color-verified: 	hsl(157, 46%, 53%);
   --color-pending: 		hsl(35, 100%, 60%);
+  --color-button: hsl(35, 100%, 60%);
+  --color-button-hover: hsl(35, 100%, 40%);
 
   --color-link: hsl(237, 100%, 50%);
 }

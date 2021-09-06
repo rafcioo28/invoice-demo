@@ -1,12 +1,14 @@
 .invoice-table {
-  padding-top: rem(280);
-
 
   &__container {
     margin: 0 auto;
     background-color: #fff;
   
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(lg) {
+      width: rem(1200);
+    }
+  
+    @include media-breakpoint-up(xxxl) {
       width: rem(1700);
     }
   }
@@ -14,8 +16,12 @@
   &__row,
   &__table-header {
     display: grid;
-    grid-template-columns: rem(90) rem(135) rem(388) rem(160) rem(172) rem(167) rem(149) rem(145) rem(148) 1fr;
+    grid-template-columns: rem(40) rem(90) rem(270) rem(115) rem(115) rem(115) rem(115) rem(115) rem(115) 1fr;
     align-items: center;
+
+    @include media-breakpoint-up(xxxl) {
+      grid-template-columns: rem(90) rem(135) rem(388) rem(160) rem(172) rem(167) rem(149) rem(145) rem(148) 1fr;
+    }
   }
 
   &__table-header {
@@ -26,16 +32,20 @@
 
     div {
       text-transform: uppercase;
-      font-size: 18px;
+      font-size: rem(16);
       font-weight: $font-weight-medium;
       color: var(--color-table-header);
+
+      @include media-breakpoint-up(xxxl) {
+        font-size: rem(18);
+      }
     }
   }
 
   &__row {
     position: relative;
     height: rem(76);
-    font-size: rem(22);
+    font-size: rem(16);
     border: 1px solid var(--border-color);
     color: var(--table-text-color);
     background-color: #fff;
@@ -43,8 +53,12 @@
     transform: scale(1);
     transition: all .2s ease;
 
+    @include media-breakpoint-up(xxxl) {
+      font-size: rem(22);
+    }
+
     &:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
       z-index: 2;
       box-shadow: 0 rem(25) rem(60) var(--shadow-color);
     }
@@ -67,12 +81,16 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      font-size: rem(18);
+      font-size: rem(14);
       text-transform: uppercase;
       font-weight: 600;
       height: rem(28);
       padding: 0 rem(15);
       border-radius: rem(20);
+
+      @include media-breakpoint-up(xxxl) {
+        font-size: rem(18);
+      }
     }
 
     &--outgoing {
