@@ -52,6 +52,7 @@
     cursor: pointer;
     transform: scale(1);
     transition: all .2s ease;
+    opacity: 0;
 
     @include media-breakpoint-up(xxxl) {
       font-size: rem(22);
@@ -115,5 +116,14 @@
         color: #fff  ;
       }
     }
+  }
+
+  &__paid {
+    font-size: rem(13);
+    margin-left: rem(15);
+    color: #fff;
+    background: var(--color-paid);
+    padding: rem(5) rem(13);
+    border-radius: rem(15);
   }
 }

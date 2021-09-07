@@ -5,8 +5,10 @@
 @import "utility-classes";
 
 /* Components */
+@import "components/header";
 @import "components/filters";
 @import "components/invoice-table";
+@import "components/pagination";
 @import "components/checkbox";
 
 /* BEM Blocks */

@@ -10,25 +10,33 @@ require get_theme_file_path( '/includes/cpt/invoice-cpt.php' );
 require get_theme_file_path( '/includes/cpt/restaurant-cpt.php' );
 require get_theme_file_path( '/includes/acf-local.php' );
 require get_theme_file_path( '/includes/ajax-pagination.php' );
+require get_theme_file_path( '/includes/ajax-paid.php' );
 
 // Supports.
-add_theme_support( 'post-thumbnails' );
-add_theme_support(
-	'html5',
-	array(
-		'script',
-		'style',
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	)
-);
+function ci_theme_setup() {
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support(
+		'html5',
+		array(
+			'script',
+			'style',
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		)
+	);
 
-// Image sizes.
-add_image_size( 'restaurant_thumbnail', 40, 40, array( 'center', 'center' ) );
+	// Image sizes.
+	add_image_size( 'restaurant_thumbnail', 40, 40, array( 'center', 'center' ) );
 
+	register_nav_menus(
+		array(
+			'top-menu' => __( 'Top Menu', 'createit-demo' ),
+		)
+	);
+}
 /**
  * Styles and scripts.
  */
@@ -51,10 +59,13 @@ add_action( 'wp_enqueue_scripts', 'enqueue_files' );
 
 
 // Hooks.
+add_action( 'after_setup_theme', 'ci_theme_setup' );
 add_action( 'init', 'ci_restaurant_post_type' ); // Init custom post type - restaurant.
 add_action( 'init', 'ci_invoice_post_type' ); // Init custom post type - invoice.
 add_action( 'wp_ajax_ci_invoices_pagination', 'ci_invoices_pagination' ); // Ajax pagination.
 add_action( 'wp_ajax_nopriv_ci_invoices_pagination', 'ci_invoices_pagination' ); // Ajax pagination.
+add_action( 'wp_ajax_ci_paid_invoice', 'ci_paid_invoice' ); // Ajax invoice paid.
+add_action( 'wp_ajax_nopriv_ci_paid_invoice', 'ci_paid_invoice' ); // Ajax invoice paid.
 // Filters.
 add_filter( 'acf/settings/save_json', 'ci_acf_json_save' ); // ACF local save.
 add_filter( 'acf/settings/load_json', 'ci_acf_json_load' ); // ACF local load.

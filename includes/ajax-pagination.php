@@ -9,15 +9,85 @@
 function ci_invoices_pagination() {
 	$msg = '';
 
-	if ( isset( $_POST['page'] ) ) {
+	if ( isset( $_POST['page'] ) && isset( $_POST['filter'] ) ) {
 
 		$page         = sanitize_text_field( $_POST['page'] );
+		$filter       = sanitize_text_field( $_POST['filter'] );
 		$cur_page     = $page;
 		$page         = --$page;
-		$per_page     = 2;
+		$per_page     = 10;
 		$previous_btn = true;
 		$next_btn     = true;
 		$start        = $page * $per_page;
+		$meta_filter  = array();
+		$meta_start   = array();
+		$meta_end     = array();
+		$meta_text    = sanitize_text_field( $_POST['search_text'] );
+
+		if ( isset( $_POST['start_date'] ) && isset( $_POST['end_date'] ) ) {
+
+			$start_date   = sanitize_text_field( $_POST['start_date'] );
+			$end_date     = sanitize_text_field( $_POST['end_date'] );
+
+			if ( 'false' !== $start_date &&  'false' !== $end_date ) {
+				$meta_start = array(
+					'key'     => 'invoice_start_date',
+					'value'   => $start_date,
+					'compare' => '>=',
+					'type'    => 'DATE',
+				);
+
+				$meta_end = array(
+					'key'     => 'invoice_start_date',
+					'value'   => $end_date,
+					'compare' => '<=',
+					'type'    => 'DATE',
+				);
+			}
+		}
+
+		if ( 'all' !== $filter ) {
+			$meta_filter = array(
+				'key'     => 'invoice_status',
+				'value'   => $filter,
+				'compare' => '=',
+			);
+		}
+
+		if ( 'false' !== $meta_text ) {
+
+			$restaurants_array = array(
+				'fields'            => 'ids',
+				'post_type'         => 'restaurant',
+				'post_status '      => 'publish',
+				'posts_per_page'    => -1,
+				's'                 => $meta_text,
+			);
+
+			$meta_search_array = get_posts( $restaurants_array );
+
+			if ( ! empty( $meta_search_array ) ) { 
+				$meta_search = array(
+					'key'     => 'invoice_restaurant',
+					'value'   => $meta_search_array,
+					'compare' => 'IN',
+				);
+			} else {
+				$meta_search = array(
+					'key'     => 'invoice_restaurant',
+					'value'   => null,
+					'compare' => 'IN',
+				);
+			}
+		}
+
+		$meta_query = array(
+			'relation' => 'AND',
+			$meta_filter,
+			$meta_start,
+			$meta_end,
+			$meta_search,
+		);
 
 		$invoices = new WP_Query(
 			array(
@@ -27,6 +97,7 @@ function ci_invoices_pagination() {
 				'order'          => 'DESC',
 				'posts_per_page' => $per_page,
 				'offset'         => $start,
+				'meta_query'     => $meta_query,
 			)
 		);
 
@@ -35,6 +106,7 @@ function ci_invoices_pagination() {
 				'post_type'      => 'invoice',
 				'post_status '   => 'publish',
 				'posts_per_page' => -1,
+				'meta_query'     => $meta_query,
 			)
 		);
 
@@ -50,11 +122,12 @@ function ci_invoices_pagination() {
 				$invoice_fees       = get_field( 'invoice_fees' );
 				$invoice_transfer   = get_field( 'invoice_transfer' );
 				$invoice_orders     = get_field( 'invoice_orders' );
+				$invoice_paid       = get_field( 'invoice_paid' );
 				?>
 				<div class="invoice-table__row js--row">
 					<div class="invoice-table__check">
 						<label>
-							<input type="checkbox" id="<?php the_ID(); ?>">
+							<input type="checkbox" data-invoice-id="<?php the_ID(); ?>">
 							<span></span>
 						</label>
 					</div>
@@ -67,7 +140,13 @@ function ci_invoices_pagination() {
 							<span><?php echo esc_attr( $invoice_restaurant->post_title ); ?></span>
 							<?php
 						endif;
+						if ( ! empty( $invoice_paid ) ) :
+							?>
+							<span class="invoice-table__paid"><?php esc_html_e( 'Paid', 'createit-demo' ); ?></span>
+							<?php
+						endif;
 						?>
+
 					</div>
 					<div class="invoice-table__status <?php echo ( ! empty( $invoice_status ) ) ? esc_attr( 'invoice-table__status--' . $invoice_status ) : ''; ?>">
 						<div><?php echo ( ! empty( $invoice_status ) ) ? esc_html( $invoice_status ) : ''; ?></div>
@@ -114,9 +193,8 @@ function ci_invoices_pagination() {
 				$end_loop = $no_of_paginations;
 			}
 		}
-
 		$pag_container .= '
-		<div class="ci-pagination">
+		<div class="ci-pagination__navigation">
 			<ul>';
 
 		if ( $previous_btn && $cur_page > 1 ) {
@@ -126,7 +204,7 @@ function ci_invoices_pagination() {
 			$pag_container .= "<li class='inactive'><</li>";
 		}
 		for ( $i = $start_loop; $i <= $end_loop; $i++ ) {
-			if ( $cur_page == $i ) {
+			if ( $i === (int) $cur_page ) {
 				$pag_container .= "<li p='$i' class = 'selected' >{$i}</li>";
 			} else {
 				$pag_container .= "<li p='$i' class='active'>{$i}</li>";
@@ -142,7 +220,12 @@ function ci_invoices_pagination() {
 
 		$pag_container = $pag_container . '</ul></div>';
 
-		echo '<div class="ci-pagination-nav">' . $pag_container . '</div>';
+		echo '<div class="ci-pagination">';
+		echo '<div class="ci-pagination__page-of">';
+		printf( esc_html__( 'page %d of %d', 'createit-demo' ), $cur_page, $no_of_paginations );
+		echo '</div>';
+		echo $pag_container;
+		echo '</div>';
 	}
 	exit();
 }

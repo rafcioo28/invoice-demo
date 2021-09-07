@@ -2,14 +2,16 @@
 import MobileMenu from "./modules/MobileMenu"
 import Checkboxes from "./modules/Checkboxes"
 import DateFilter from "./modules/DateFilter"
-import Filters from "./modules/Filters"
-import AjaxPagination from "./modules/AjaxPagination"
+import AjaxPaginationFilters from "./modules/AjaxPaginationFilters"
+import MarkAsPaid from "./modules/MarkAsPaid"
 
 // Instantiate a new object using our modules/classes
 const mobileMenu = new MobileMenu()
-const ajaxPagination = new AjaxPagination()
-const checkboxes = new Checkboxes()
 const dateFilter = new DateFilter()
-const filters = new Filters()
+const ajaxPagination = new AjaxPaginationFilters()
+const checkboxes = new Checkboxes()
+const markAsPaid = new MarkAsPaid()
+
+
 
 

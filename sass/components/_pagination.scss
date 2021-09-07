@@ -1,0 +1,53 @@
+.ci-pagination {
+  display: flex;
+  border: 1px solid var(--border-color);
+  border-radius: 0 0 rem(8) rem(8);
+
+  &__navigation {
+    margin-left: auto;
+
+    ul {
+      list-style: none;
+      display: flex;
+      border: 1px solid var(--border-color);
+      border-radius: rem(4);
+      margin: rem(25);
+
+      li {
+        display: flex;
+        color: var(--color-table-header);
+        width: rem(38);
+        height: rem(38);
+        align-items: center;
+        justify-content: center;
+        font-size: rem(22);
+        font-weight: $font-weight-semibold;
+        
+        &:not(:last-child) {
+          border-right: 1px solid var(--border-color);
+        }
+
+        &.active {
+          cursor: pointer;
+        }
+
+        &.selected {
+          background-color: var(--color-active-pag);
+          color: #000;
+        }
+
+        &.inactive {
+          color: var(--color-inactive-pag);
+        }
+      }
+    }
+  }
+
+  &__page-of {
+    display: flex;
+    color: var(--color-table-header);
+    font-size: rem(22);
+    align-items: center;
+    margin-left: rem(25);
+  }
+}

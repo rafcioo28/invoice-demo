@@ -41,7 +41,7 @@ get_header();
 			</svg>
 			<input type="text" id="js--invoice-search" placeholder="<?php esc_html_e( 'Search', 'createit-demo' ); ?>">
 			</div>
-			<button class="filters__paid-btn"><?php esc_html_e( 'Mark as paid', 'createit-demo' ); ?></button>
+			<button class="filters__paid-btn js--paid"><?php esc_html_e( 'Mark as paid', 'createit-demo' ); ?></button>
 		</div>
 	</section>
 	<section class="invoice-table">
@@ -57,6 +57,8 @@ get_header();
 				<div><?php esc_html_e( 'Fee', 'createit-demo' ); ?></div>
 				<div><?php esc_html_e( 'Transfer', 'createit-demo' ); ?></div>
 				<div><?php esc_html_e( 'Orders', 'createit-demo' ); ?></div>
+			</div>
+			<div class="js--table-content">
 			</div>
 		</div>
 	</section>

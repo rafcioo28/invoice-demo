@@ -1,5 +1,4 @@
 import $ from 'jquery';
-
 class Checkboxes {
     constructor() {
         this.events();

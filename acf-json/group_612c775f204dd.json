@@ -166,6 +166,25 @@
             "min": "",
             "max": "",
             "step": 1
+        },
+        {
+            "key": "field_613782dee03f7",
+            "label": "Paid",
+            "name": "invoice_paid",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -185,5 +204,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1630304580
+    "modified": 1631027975
 }

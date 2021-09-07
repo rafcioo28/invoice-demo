@@ -1,4 +1,5 @@
 {
     "/build/scripts.js": "/build/scripts.js",
-    "/build/style.css": "/build/style.css"
+    "/build/style.css": "/build/style.css",
+    "/build/index.min.js": "/build/index.min.js"
 }
