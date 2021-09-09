@@ -6,10 +6,12 @@
  */
 
 get_header();
+$nonce = wp_create_nonce( 'ci-invoices' );
+
 ?>
 <main>
 	<section class="heading">
-		<h1>Invoices</h1>
+		<h1><?php esc_html_e( 'Invoices', 'createit-demo' ); ?></h1>
 	</section>
 	<section class="filters">
 		<div class="filters__container">
@@ -58,7 +60,7 @@ get_header();
 				<div><?php esc_html_e( 'Transfer', 'createit-demo' ); ?></div>
 				<div><?php esc_html_e( 'Orders', 'createit-demo' ); ?></div>
 			</div>
-			<div class="js--table-content">
+			<div class="js--table-content" data-ci-nonce="<?php echo esc_attr( $nonce ); ?>">
 			</div>
 		</div>
 	</section>

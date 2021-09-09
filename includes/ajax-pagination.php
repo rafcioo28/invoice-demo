@@ -7,29 +7,34 @@
  */
 
 function ci_invoices_pagination() {
-	$msg = '';
 
+	if ( check_ajax_referer( 'ci-invoices', 'nonce', false ) === false ) {
+		wp_send_json_error();
+	}
+
+	ob_start();
 	if ( isset( $_POST['page'] ) && isset( $_POST['filter'] ) ) {
 
-		$page         = sanitize_text_field( $_POST['page'] );
-		$filter       = sanitize_text_field( $_POST['filter'] );
-		$cur_page     = $page;
-		$page         = --$page;
-		$per_page     = 10;
-		$previous_btn = true;
-		$next_btn     = true;
-		$start        = $page * $per_page;
-		$meta_filter  = array();
-		$meta_start   = array();
-		$meta_end     = array();
-		$meta_text    = sanitize_text_field( $_POST['search_text'] );
+		$page          = sanitize_text_field( $_POST['page'] );
+		$filter        = sanitize_text_field( $_POST['filter'] );
+		$cur_page      = $page;
+		$page          = --$page;
+		$per_page      = 10;
+		$previous_btn  = true;
+		$next_btn      = true;
+		$pag_container = '';
+		$start         = $page * $per_page;
+		$meta_filter   = array();
+		$meta_start    = array();
+		$meta_end      = array();
+		$meta_text     = ( isset( $_POST['search_text'] ) ) ? sanitize_text_field( $_POST['search_text'] ) : '';
 
 		if ( isset( $_POST['start_date'] ) && isset( $_POST['end_date'] ) ) {
 
-			$start_date   = sanitize_text_field( $_POST['start_date'] );
-			$end_date     = sanitize_text_field( $_POST['end_date'] );
+			$start_date = sanitize_text_field( $_POST['start_date'] );
+			$end_date   = sanitize_text_field( $_POST['end_date'] );
 
-			if ( 'false' !== $start_date &&  'false' !== $end_date ) {
+			if ( 'false' !== $start_date && 'false' !== $end_date ) {
 				$meta_start = array(
 					'key'     => 'invoice_start_date',
 					'value'   => $start_date,
@@ -57,16 +62,16 @@ function ci_invoices_pagination() {
 		if ( 'false' !== $meta_text ) {
 
 			$restaurants_array = array(
-				'fields'            => 'ids',
-				'post_type'         => 'restaurant',
-				'post_status '      => 'publish',
-				'posts_per_page'    => -1,
-				's'                 => $meta_text,
+				'fields'         => 'ids',
+				'post_type'      => 'restaurant',
+				'post_status'    => 'publish',
+				'posts_per_page' => -1,
+				's'              => $meta_text,
 			);
 
 			$meta_search_array = get_posts( $restaurants_array );
 
-			if ( ! empty( $meta_search_array ) ) { 
+			if ( ! empty( $meta_search_array ) ) {
 				$meta_search = array(
 					'key'     => 'invoice_restaurant',
 					'value'   => $meta_search_array,
@@ -92,7 +97,7 @@ function ci_invoices_pagination() {
 		$invoices = new WP_Query(
 			array(
 				'post_type'      => 'invoice',
-				'post_status '   => 'publish',
+				'post_status'    => 'publish',
 				'orderby'        => 'post_date',
 				'order'          => 'DESC',
 				'posts_per_page' => $per_page,
@@ -104,7 +109,7 @@ function ci_invoices_pagination() {
 		$count = new WP_Query(
 			array(
 				'post_type'      => 'invoice',
-				'post_status '   => 'publish',
+				'post_status'    => 'publish',
 				'posts_per_page' => -1,
 				'meta_query'     => $meta_query,
 			)
@@ -222,10 +227,17 @@ function ci_invoices_pagination() {
 
 		echo '<div class="ci-pagination">';
 		echo '<div class="ci-pagination__page-of">';
-		printf( esc_html__( 'page %d of %d', 'createit-demo' ), $cur_page, $no_of_paginations );
+		printf( esc_html__( 'page %1$d of %2$d', 'createit-demo' ), $cur_page, $no_of_paginations );
 		echo '</div>';
 		echo $pag_container;
 		echo '</div>';
 	}
-	exit();
+
+	$output = ob_get_clean();
+
+	$response = array(
+		'table' => $output,
+	);
+
+	wp_send_json_success( $response );
 }

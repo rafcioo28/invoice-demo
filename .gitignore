@@ -8,3 +8,4 @@ build/css/critical.css
 .history/
 *.webp
 /.vscode/
+.env
