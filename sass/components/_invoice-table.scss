@@ -76,6 +76,14 @@
     }
   }
 
+  &__download {
+    margin-left: rem(55);
+
+    @include media-breakpoint-up(lg) {
+      margin-left: rem(35);
+    }
+  }
+
   &__status {
 
     div {

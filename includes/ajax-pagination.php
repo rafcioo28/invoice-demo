@@ -173,6 +173,7 @@ function ci_invoices_pagination() {
 					</div>
 					<div class="invoice-table__orders">
 						<?php echo ( ! empty( $invoice_orders ) ) ? esc_html( $invoice_orders ) : ''; ?>
+						<a href="#" class="invoice-table__download"><img src="<?php echo get_template_directory_uri(); ?>/images/download-ico.jpg" width="28" height="28" alt="Download-icon"></a>
 					</div>
 				</div>
 				<?php

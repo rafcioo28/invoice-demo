@@ -34,7 +34,7 @@ $nonce = wp_create_nonce( 'ci-invoices' );
 				<div class="filters__dates-label">
 					<?php esc_html_e( 'From', 'createit-demo' ); ?>
 				</div>
-				<input type="text" id="js--date-from">
+				<input type="text" id="js--date-from" class="filters__date-field">
 			</div>
 
 			<div class="filters__search">
