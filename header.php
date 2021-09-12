@@ -14,7 +14,7 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
-		<header>
+		<header class="header">
 			<img class="logo" src="<?php echo get_template_directory_uri(); ?>/images/logo.jpg" width="46" height="46" alt="logo">
 			<?php
 			wp_nav_menu(

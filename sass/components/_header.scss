@@ -1,4 +1,4 @@
-header {
+.header {
   display: flex;
   height: rem(80);
   align-items: center;
@@ -6,6 +6,7 @@ header {
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 1000;
 
   .logo {
     margin-left: rem(60);
@@ -16,7 +17,6 @@ header {
     display: flex;
     margin: 0;
     list-style: none;
-    //gap: rem(25)
     .menu-item {
       padding: rem(2) rem(12);
     }
@@ -29,8 +29,16 @@ header {
     a {
       color: #fff;
       text-decoration: none;
-      font-size: rem(26);
+        font-size: rem(16);
       font-weight: $font-weight-semibold;
+
+      @include media-breakpoint-up(lg) {
+        font-size: rem(20);
+      }
+
+      @include media-breakpoint-up(xxxl) {
+        font-size: rem(26);
+      }
     }
   }
 

@@ -76,6 +76,14 @@
     }
   }
 
+  &__name {
+    flex: 0 0 rem(135);
+    
+    @include media-breakpoint-up(xxxl) {
+      flex: 0 0 rem(230);
+    }
+  }
+
   &__download {
     margin-left: rem(55);
 

@@ -142,7 +142,7 @@ function ci_invoices_pagination() {
 						if ( ! empty( $invoice_restaurant ) ) :
 							echo get_the_post_thumbnail( $invoice_restaurant, 'restaurant_thumbnail' );
 							?>
-							<span><?php echo esc_attr( $invoice_restaurant->post_title ); ?></span>
+							<span class="invoice-table__name"><?php echo esc_attr( $invoice_restaurant->post_title ); ?></span>
 							<?php
 						endif;
 						if ( ! empty( $invoice_paid ) ) :

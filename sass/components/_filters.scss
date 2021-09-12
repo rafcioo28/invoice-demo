@@ -22,14 +22,14 @@
   &__status-filter {
     color: var(--status-filter);
     text-transform: uppercase;
-    padding: rem(10) rem(12);
+    font-size: rem(14);
+    padding: rem(5) rem(8);
     border-radius: rem(8);
     cursor: pointer;
 
-    @include media-breakpoint-up(lg) {
-      font-size: rem(14);
-      padding: rem(5) rem(8);
-
+    @include media-breakpoint-up(xxxl) {
+      font-size: rem(16);
+      padding: rem(10) rem(12);
     }
 
     &--active {
@@ -47,30 +47,30 @@
     border-radius: rem(8);
 
     input {
-      width: rem(345);
-      height: rem(56);
-      font-size: rem(28);
+      height: rem(38);
+      width: rem(260);
+      font-size: rem(18);
       padding-left: rem(15);
       border-radius: rem(8);
       border: none;
       outline-color:  var(--color-table-header);
 
-      @include media-breakpoint-up(lg) {
-        height: rem(38);
-        width: rem(260);
-        font-size: rem(18);
+      @include media-breakpoint-up(xxxl) {
+        width: rem(345);
+        height: rem(56);
+        font-size: rem(28);
       }
     }
   }
 
   &__dates-label {
-    width: rem(140);
-    height: 100%;
+    height: rem(38);
+    width: rem(120);
+
     background-color: var(--bg-label);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: rem(22);
 
     &::before {
       display: block;
@@ -80,10 +80,10 @@
       height: 100%;
     }
 
-    @include media-breakpoint-up(lg) {
-      height: rem(38);
-      font-size: rem(16);
-      width: rem(120);
+    @include media-breakpoint-up(xxxl) {
+      height: 100%;
+      font-size: rem(22);
+      width: rem(140);
     }
   }
 
@@ -93,32 +93,32 @@
 
     svg {
       position: absolute;
-      width: rem(30);
-      height: rem(30);
+      width: rem(16);
+      height: rem(16);
       top: rem(13);
       left: rem(16);
       color: var(--color-table-header);
 
-      @include media-breakpoint-up(lg) {
-        width: rem(16);
-        height: rem(16);
+      @include media-breakpoint-up(xxxl) {
+        width: rem(30);
+        height: rem(30);
       }
     }
 
     input {
-      width: rem(310);
-      height: rem(58);
-      font-size: rem(28);
-      padding-left: rem(58);
+      width: rem(250);
+      height: rem(40);
+      font-size: rem(18);
+      padding-left: rem(40);
       border: 1px solid var(--border-color);
       border-radius: rem(8);
       outline-color:  var(--color-table-header);
 
-      @include media-breakpoint-up(lg) {
-        width: rem(250);
-        height: rem(40);
-        font-size: rem(18);
-        padding-left: rem(40);
+      @include media-breakpoint-up(xxxl) {
+        width: rem(310);
+        height: rem(58);
+        font-size: rem(28);
+        padding-left: rem(58);
       }
     }
   }
@@ -127,7 +127,8 @@
     margin-left: rem(22);
     background-color: var(--color-button);
     color: #fff;
-    font-size: rem(22);
+    font-size: rem(16);
+    height: rem(38);
     border: none;
     border-radius: rem(8);
     cursor: pointer;
@@ -138,9 +139,9 @@
       background-color: var(--color-button-hover);
     }
 
-    @include media-breakpoint-up(lg) {
-      font-size: rem(16);
-      height: rem(38);
+    @include media-breakpoint-up(xxxl) {
+      font-size: rem(22);
+      height: auto;
     }
   }
 }
